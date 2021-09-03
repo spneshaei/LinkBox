@@ -32,7 +32,7 @@ struct AddFolderView: View {
         Form {
             TextField("نام موضوع", text: $folderName)
         }
-        .navigationBarTitle(Text("افزودن موضوع"))
+        .navigationTitle(Text("افزودن موضوع"))
         .toolbar {
             Button {
                 addFolder()

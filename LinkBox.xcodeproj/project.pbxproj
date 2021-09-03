@@ -190,6 +190,7 @@
 		42D3F94926E1EA9300C3EFB5 /* LinkBox Watch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LinkBox Watch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		42D3F94A26E1EA9700C3EFB5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		42D3F94F26E1FB2700C3EFB5 /* EditLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLinkView.swift; sourceTree = "<group>"; };
+		42D3F95326E2333F00C3EFB5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +258,7 @@
 		42D3F88426E1CE4D00C3EFB5 = {
 			isa = PBXGroup;
 			children = (
+				42D3F95326E2333F00C3EFB5 /* README.md */,
 				42D3F8CE26E1CE6100C3EFB5 /* LinkBox.entitlements */,
 				42D3F88926E1CE4D00C3EFB5 /* Shared */,
 				42D3F89626E1CE4F00C3EFB5 /* iOS */,

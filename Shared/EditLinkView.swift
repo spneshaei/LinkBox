@@ -30,15 +30,11 @@ struct EditLinkView: View {
     }
     
     var editLinkButton: some View {
-        #if os(iOS)
         Button {
             editLink()
         } label: {
             Text("افزودن").bold()
         }
-        #else
-        EmptyView()
-        #endif
     }
     
     var body: some View {
@@ -50,7 +46,7 @@ struct EditLinkView: View {
             linkName = link.name ?? ""
             linkAddress = link.address ?? ""
         }
-        .navigationBarTitle(Text("تغییر لینک"))
+        .navigationTitle(Text("تغییر لینک"))
         .toolbar {
             editLinkButton
         }

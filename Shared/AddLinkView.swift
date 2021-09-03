@@ -33,15 +33,11 @@ struct AddLinkView: View {
     }
     
     var addLinkButton: some View {
-        #if os(iOS)
         Button {
             addLink()
         } label: {
             Text("افزودن").bold()
         }
-        #else
-        EmptyView()
-        #endif
     }
     
     var body: some View {
@@ -56,7 +52,7 @@ struct AddLinkView: View {
             }
             #endif
         }
-        .navigationBarTitle(Text("افزودن لینک"))
+        .navigationTitle(Text("افزودن لینک"))
         .toolbar {
             addLinkButton
         }

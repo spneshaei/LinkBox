@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoldersView: View {
-    #if os(iOS)
+    #if os(iOS) || os(macOS)
     typealias MyListStyle = SidebarListStyle
     #else
     typealias MyListStyle = PlainListStyle
@@ -43,33 +43,29 @@ struct FoldersView: View {
     }
     
     var addNavigation: some View {
-        #if os(iOS)
-        NavigationLink(destination: AddFolderView(presentation: $shouldNavigateToAddFolderView).environment(\.managedObjectContext, managedObjectContext), isActive: $shouldNavigateToAddFolderView) {
-            Button {
-                shouldNavigateToAddFolderView = true
-            } label: {
-                Image(systemName: "plus")
-            }
+        NavigationLink(destination: AddFolderView(presentation: $shouldNavigateToAddFolderView).environment(\.managedObjectContext, managedObjectContext)) {
+            Label("Add", systemImage: "plus")
         }
-        #else
-        EmptyView()
-        #endif
     }
     
     var body: some View {
-        List {
-            ForEach(folders, id: \.folderID) { folder in
-                NavigationLink(destination: LinksView(folderID: folder.folderID ?? "")) {
-                    Label(folder.name ?? "بدون نام", systemImage: "folder")
+        VStack {
+            List {
+                ForEach(folders, id: \.folderID) { folder in
+                    NavigationLink(destination: LinksView(folderID: folder.folderID ?? "")) {
+                        Label(folder.name ?? "بدون نام", systemImage: "folder")
+                    }
                 }
+                .onDelete(perform: removeFolders)
             }
-            .onDelete(perform: removeFolders)
         }
         .toolbar {
-            addNavigation
+            ToolbarItem {
+                addNavigation
+            }
         }
         .listStyle(MyListStyle())
-        .navigationBarTitle(Text("موضوعات"))
+        .navigationTitle(Text("موضوعات"))
     }
 }
 

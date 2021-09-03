@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LinksView: View {
-    #if os(iOS)
+    #if os(iOS) || os(macOS)
     typealias MyListStyle = SidebarListStyle
     #else
     typealias MyListStyle = PlainListStyle
@@ -27,7 +27,7 @@ struct LinksView: View {
             ForEachLinksView(folderID: folderID, searchPredicate: searchPredicate)
         }
         .listStyle(MyListStyle())
-        .navigationBarTitle(Text("لینک‌ها"))
+        .navigationTitle(Text("لینک‌ها"))
         .toolbar {
             NavigationLink(destination: AddLinkView(folderID: folderID, presentation: $shouldNavigateToAddLinkView).environment(\.managedObjectContext, managedObjectContext), isActive: $shouldNavigateToAddLinkView) {
                 Button {
