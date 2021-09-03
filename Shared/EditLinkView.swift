@@ -1,0 +1,58 @@
+//
+//  EditLinkView.swift
+//  LinkBox
+//
+//  Created by Seyyed Parsa Neshaei on 9/3/21.
+//
+
+import SwiftUI
+
+struct EditLinkView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
+    
+    var link: LinkEntity
+    
+    @State var linkName = ""
+    @State var linkAddress = ""
+    
+    @Binding var presentation: Bool
+    
+    func editLink() {
+        link.address = linkAddress
+        link.name = linkName.isEmpty ? "بدون نام" : linkName
+        do {
+            try managedObjectContext.save()
+            presentationMode.wrappedValue.dismiss()
+        } catch {
+            print("Error!")
+        }
+    }
+    
+    var editLinkButton: some View {
+        #if os(iOS)
+        Button {
+            editLink()
+        } label: {
+            Text("افزودن").bold()
+        }
+        #else
+        EmptyView()
+        #endif
+    }
+    
+    var body: some View {
+        Form {
+            TextField("نام لینک", text: $linkName)
+            TextField("آدرس لینک", text: $linkAddress)
+        }
+        .onAppear {
+            linkName = link.name ?? ""
+            linkAddress = link.address ?? ""
+        }
+        .navigationBarTitle(Text("تغییر لینک"))
+        .toolbar {
+            editLinkButton
+        }
+    }
+}

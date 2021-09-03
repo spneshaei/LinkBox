@@ -1,6 +1,6 @@
 //
 //  LinkBoxApp.swift
-//  Shared
+//  LinkBox Watch WatchKit Extension
 //
 //  Created by Seyyed Parsa Neshaei on 9/3/21.
 //
@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct LinkBoxApp: App {
     let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
+    
+    @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
                 FoldersView()
@@ -19,5 +19,7 @@ struct LinkBoxApp: App {
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
             .environment(\.layoutDirection, .rightToLeft)
         }
+
+        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
     }
 }
